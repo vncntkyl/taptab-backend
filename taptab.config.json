@@ -1,0 +1,29 @@
+{
+  "media": {
+    "video_resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "image_resolution": {
+      "static_ads": {
+        "width": 600,
+        "height": 400
+      },
+      "geo-tagged_ads": {
+        "width": 800,
+        "height": 800
+      }
+    },
+    "file_size_limit": 10,
+    "accepted_file_types": {
+      "videos": "webm",
+      "images": "webp"
+    }
+  },
+  "app": {
+    "static_ads_display": 10,
+    "geo-tagged_ads_radius": 150
+  },
+  "updated_by": "64f6e011d3151b362167b25c",
+  "last_update": "2024-03-27T04:04:38.846Z"
+}
