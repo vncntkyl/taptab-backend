@@ -4,6 +4,7 @@ const numCPUs = require("os").cpus().length;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const UserRoute = require("./routes/user.route");
+const StorageRoute = require("./routes/storage.route");
 
 const app = express();
 
@@ -16,10 +17,13 @@ app.use(text());
 app.use(json());
 
 //test route
-app.get("/", (_, res) => { res.send("I'm working! 😊"); });
+app.get("/", (_, res) => {
+  res.send("I'm working! 😊");
+});
 
 //api routes
 app.use("/users", UserRoute);
+app.use("/storage", StorageRoute);
 
 app.listen(port, () => {
   console.log(
