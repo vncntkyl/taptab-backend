@@ -1,6 +1,3 @@
-// import connectDB from "../db/conn.db";
-// import { ObjectId } from "mongodb";
-// import md5 from "md5";
 const connectDB = require("../db/conn.db");
 const md5 = require("md5");
 const { ObjectId } = require("mongodb");

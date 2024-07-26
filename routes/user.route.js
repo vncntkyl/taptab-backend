@@ -1,5 +1,3 @@
-// import express from "express";
-// import { UserController } from "../controller/user.controller";
 const express = require("express");
 const UserController = require("../controller/user.controller");
 

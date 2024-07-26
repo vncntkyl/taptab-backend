@@ -1,8 +1,3 @@
-// import express, { text, json } from "express";
-// import cors from "cors";
-// import bodyParser from "body-parser";
-// import { UserRoute } from "./src/routes/user.route"
-// import * as https from "https";
 const express = require("express");
 const { text, json } = require("express");
 const numCPUs = require("os").cpus().length;
@@ -20,9 +15,10 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(text());
 app.use(json());
 
-//routes
+//test route
 app.get("/", (_, res) => { res.send("I'm working! 😊"); });
-//users
+
+//api routes
 app.use("/users", UserRoute);
 
 app.listen(port, () => {
