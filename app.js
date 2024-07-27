@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const UserRoute = require("./routes/user.route");
 const StorageRoute = require("./routes/storage.route");
 const PlaylistRoute = require("./routes/playlist.route");
+const PlannerRoute = require("./routes/planner.route");
+const PlayerRoute = require("./routes/player.route");
 
 const app = express();
 
@@ -26,6 +28,8 @@ app.get("/", (_, res) => {
 app.use("/users", UserRoute);
 app.use("/storage", StorageRoute);
 app.use("/playlist", PlaylistRoute);
+app.use("/planner", PlannerRoute);
+app.use("/players", PlayerRoute);
 
 app.listen(port, () => {
   console.log(

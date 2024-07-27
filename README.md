@@ -6,6 +6,11 @@ This repository serves as the backend API of the Taptab CM and Taptab App.
 
 ## Version Notes
 
+### 1.0.4
+- Created the backend controller and endpoints for Players and Planner Schedules.
+- Simplified the functions of player controller. Reduced the number of queries needed for the update functions to one.
+- Simplified the endpoints for player routes.
+
 ### 1.0.3
 - Created notes for deploying the backend to the live server.
 - Removed unnecessary imports to the Storage Controller.
