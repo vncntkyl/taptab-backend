@@ -1,7 +1,7 @@
 const md5 = require("md5");
-const multer = require("multer");
 const { ObjectId } = require("mongodb");
 const { differenceInMonths, format } = require("date-fns");
+const fs = require("fs");
 
 const connectDB = require("../db/conn.db");
 const { bucket, sendResponse, getSignedUrl } = require("./controller.js");
@@ -22,7 +22,9 @@ const retrieveMediaLibrary = async (_, res) => {
     //Database connection and data fetching
     const db = await connectDB();
     const collection = db.collection("media");
-    const results = await collection.find({}).toArray();
+    const results = await collection
+      .find({ status: { $not: { $eq: "deleted" } } })
+      .toArray();
     const items = [];
     const files = await getFiles();
 
@@ -32,6 +34,8 @@ const retrieveMediaLibrary = async (_, res) => {
       const document = results.find((result) =>
         result._id.equals(file.metadata.metadata.dbID)
       );
+
+      if (!document) continue;
 
       const signedUrl = await getSignedUrl(file.name);
 
@@ -261,7 +265,7 @@ const updateMediaItem = async (req, res) => {
           file.originalname = "thumbnail/" + file.originalname;
 
           const thumbnailFile = bucket.file(data.thumbnail_src);
-          await thumbnailFile.save(file.originalname, {
+          await thumbnailFile.save(file.buffer, {
             metadata: {
               contentType: file.mimetype,
               metadata: {
@@ -271,7 +275,7 @@ const updateMediaItem = async (req, res) => {
           });
         } else {
           const mediaFile = bucket.file(data.fileName);
-          await mediaFile.save(file.originalname, {
+          await mediaFile.save(file.buffer, {
             metadata: {
               contentType: file.mimetype,
               metadata: {
@@ -281,6 +285,7 @@ const updateMediaItem = async (req, res) => {
           });
         }
       });
+      sendResponse(res, result);
     } else {
       sendResponse(res, "Database Error", 400);
     }
@@ -290,8 +295,46 @@ const updateMediaItem = async (req, res) => {
   }
 };
 
+const deleteMediaItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const db = await connectDB();
+    const collection = db.collection("media");
+
+    const response = await collection.updateOne(
+      { _id: new ObjectId(id) },
+      {
+        $set: {
+          status: "deleted",
+        },
+      }
+    );
+
+    sendResponse(res, response);
+  } catch (error) {
+    console.log("Delete Error: ", error);
+    sendResponse(res, error.message, 500);
+  }
+};
+
 const updateMediaAnalytics = async (req, res) => {
   try {
+    const db = await connectDB();
+    const collection = db.collection("analytics");
+    const { data } = req.body;
+    const { id } = req.params;
+
+    const query = { media_id: new ObjectId(id) };
+    const updates = {
+      $push: { logs: { $each: data, $position: 0 } },
+    };
+
+    const results = await collection.updateOne(query, updates, {
+      upsert: true,
+    });
+
+    sendResponse(res, results);
   } catch (error) {
     console.log("Update Error: ", error);
     sendResponse(res, error.message, 500);
@@ -300,6 +343,11 @@ const updateMediaAnalytics = async (req, res) => {
 
 const retrieveMediaAnalytics = async (_, res) => {
   try {
+    const db = await connectDB();
+    const collection = db.collection("analytics");
+    const results = await collection.find({}).toArray();
+
+    sendResponse(res, results);
   } catch (error) {
     console.log(error);
     sendResponse(res, error.message, 500);
@@ -309,6 +357,7 @@ const retrieveMediaAnalytics = async (_, res) => {
 const StorageController = {
   insertMediaItem,
   updateMediaItem,
+  deleteMediaItem,
   retrieveMediaLibrary,
   updateMediaAnalytics,
   retrieveMediaAnalytics,

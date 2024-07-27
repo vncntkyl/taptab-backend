@@ -6,6 +6,13 @@ This repository serves as the backend API of the Taptab CM and Taptab App.
 
 ## Version Notes
 
+### 1.0.2.1
+- Installed nodemon (Development only) to automatically restart the server for any file changes.
+- Created the DELETE endpoint for Media Library
+- Created the READ and UPDATE functions for Media Library Analytics
+- Fixed an issue where the UPDATE MEDIA function only updates the name and removes its contents.
+- Updates the query for retrieving media files to exclude all [deleted] items. Also added checks for ther GCS files related to the [deleted] file. 
+
 ### 1.0.2
 - Installed @google-cloud/storage library
 - Initialized the Media Library backend
