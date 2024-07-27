@@ -6,6 +6,12 @@ This repository serves as the backend API of the Taptab CM and Taptab App.
 
 ## Version Notes
 
+### 1.0.3
+- Created notes for deploying the backend to the live server.
+- Removed unnecessary imports to the Storage Controller.
+- Created Playlist Controller with its CRUD functions.
+- Updated the DELETE function, Added the clearing of schedules in the planner where the playlist is used.
+
 ### 1.0.2.1
 - Installed nodemon (Development only) to automatically restart the server for any file changes.
 - Created the DELETE endpoint for Media Library

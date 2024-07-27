@@ -88,3 +88,4 @@ yarn.lock
 
 # Other configuration files
 taptab-418401-a7f87dfe0929.json
+*.notes.*

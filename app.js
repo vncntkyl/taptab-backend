@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const UserRoute = require("./routes/user.route");
 const StorageRoute = require("./routes/storage.route");
+const PlaylistRoute = require("./routes/playlist.route");
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.get("/", (_, res) => {
 //api routes
 app.use("/users", UserRoute);
 app.use("/storage", StorageRoute);
+app.use("/playlist", PlaylistRoute);
 
 app.listen(port, () => {
   console.log(
