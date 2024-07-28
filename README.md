@@ -6,6 +6,16 @@ This repository serves as the backend API of the Taptab CM and Taptab App.
 
 ## Version Notes
 
+### 1.0.5
+- Created the Widget Controller. This controller includes the following backend: Settings, Recycle Bin, and the Dashboard Card Summary.
+- Created a retrieveSingleUser function for fetching of name information of the latest editor of the settings.
+- Created the backend for retrieving recycle bin items, and deleting single and multiple recyle bin items.
+- Simplified the function for emptying the recycle bin.
+- Updated the structure of the settings configuration file: Changed the image resolution items to thumbnail and main images. Instead of changing the resolution per type of ad, I created a general input since static/geo/weather ads are shown in the same container.
+- Other changes: 
+    - Fixed a bug in the planner backend. There is a bug where when the user selects a schedule event, all the schedules shown in the map will be filtered with the ID of the currently selected schedule. 
+    - Removed unused imports and variables in players controller.
+
 ### 1.0.4
 - Created the backend controller and endpoints for Players and Planner Schedules.
 - Simplified the functions of player controller. Reduced the number of queries needed for the update functions to one.

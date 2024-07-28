@@ -1,4 +1,4 @@
-const { ObjectId, ReturnDocument } = require("mongodb");
+const { ObjectId } = require("mongodb");
 
 const connectDB = require("../db/conn.db");
 const { sendResponse } = require("./controller.js");

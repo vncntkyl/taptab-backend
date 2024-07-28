@@ -3,14 +3,14 @@ const { ObjectId } = require("mongodb");
 const connectDB = require("../db/conn.db");
 const { sendResponse } = require("./controller.js");
 
-let query = {
-  status: { $not: { $eq: "deleted" } },
-};
-
 const retrieveSchedules = async (_, res) => {
   try {
     const db = await connectDB();
     const collection = db.collection("planner");
+    let query = {
+      status: { $not: { $eq: "deleted" } },
+    };
+
     const results = await collection
       .aggregate([
         {
@@ -61,7 +61,10 @@ const retrieveSingleSchedule = async (req, res) => {
     const db = await connectDB();
     const collection = db.collection("planner");
     const { id } = req.params;
-    query._id = new ObjectId(id);
+    let query = {
+      _id: new ObjectId(id),
+      status: { $not: { $eq: "deleted" } },
+    };
 
     const response = await collection
       .aggregate([

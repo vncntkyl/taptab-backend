@@ -8,6 +8,7 @@ const StorageRoute = require("./routes/storage.route");
 const PlaylistRoute = require("./routes/playlist.route");
 const PlannerRoute = require("./routes/planner.route");
 const PlayerRoute = require("./routes/player.route");
+const WidgetRoute = require("./routes/widget.route");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/storage", StorageRoute);
 app.use("/playlist", PlaylistRoute);
 app.use("/planner", PlannerRoute);
 app.use("/players", PlayerRoute);
+app.use("/widget", WidgetRoute);
 
 app.listen(port, () => {
   console.log(

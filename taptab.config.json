@@ -5,25 +5,33 @@
       "height": 1080
     },
     "image_resolution": {
-      "static_ads": {
-        "width": 600,
-        "height": 400
+      "thumbnail": {
+        "width": 400,
+        "height": 250
       },
-      "geo-tagged_ads": {
-        "width": 800,
-        "height": 800
+      "main": {
+        "width": 540,
+        "height": 875
       }
     },
     "file_size_limit": 10,
     "accepted_file_types": {
-      "videos": "webm",
-      "images": "webp"
+      "videos": [
+        "webm",
+        "mp4"
+      ],
+      "images": [
+        "webp",
+        "jpg",
+        "png",
+        "gif"
+      ]
     }
   },
   "app": {
-    "static_ads_display": 10,
+    "static_ads_display": 5,
     "geo-tagged_ads_radius": 150
   },
   "updated_by": "64f6e011d3151b362167b25c",
-  "last_update": "2024-03-27T04:04:38.846Z"
+  "last_update": "2024-07-28T05:03:35.698Z"
 }
