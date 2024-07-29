@@ -6,6 +6,13 @@ This repository serves as the backend API of the Taptab CM and Taptab App.
 
 ## Version Notes
 
+### 1.0.6
+- Created the Backend API for Static Ads with its CRUD functions and recording of impressions and QR Engagements.
+- Updated the logic of updating static ad files with the same logic used to update the media library files.
+- Used the getSignedUrl function to generate file links for static ads.
+- Simplified the endpoint URLs and its prioritization in routes file.
+- Updated the error handling of all API endpoints.
+
 ### 1.0.5
 - Created the Widget Controller. This controller includes the following backend: Settings, Recycle Bin, and the Dashboard Card Summary.
 - Created a retrieveSingleUser function for fetching of name information of the latest editor of the settings.

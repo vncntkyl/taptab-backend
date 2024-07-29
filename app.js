@@ -9,6 +9,7 @@ const PlaylistRoute = require("./routes/playlist.route");
 const PlannerRoute = require("./routes/planner.route");
 const PlayerRoute = require("./routes/player.route");
 const WidgetRoute = require("./routes/widget.route");
+const StaticAdRoute = require("./routes/staticads.route");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/playlist", PlaylistRoute);
 app.use("/planner", PlannerRoute);
 app.use("/players", PlayerRoute);
 app.use("/widget", WidgetRoute);
+app.use("/static", StaticAdRoute);
 
 app.listen(port, () => {
   console.log(
